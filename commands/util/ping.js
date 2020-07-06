@@ -14,16 +14,16 @@ module.exports.help = {
   aliases: ["pg", "test"],
   description: "Envoie un ping et le temps de réponse du bot.",
   usage: "<>",
-  category: "Divers"
+  category: "Divers",
 };
 
 module.exports.requirements = {
   userPerms: [],
   clientPerms: [],
-  ownerOnly: false
+  ownerOnly: false,
 };
 
 module.exports.limits = {
   rateLimit: 2,
-  cooldown: 5 * 1000
+  cooldown: 5 * 1000,
 };
