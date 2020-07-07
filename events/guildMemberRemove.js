@@ -19,10 +19,7 @@ module.exports = async (client, member) => {
       const embed = new MessageEmbed()
         .setAuthor(member.user.tag, member.user.avatarURL())
         .setDescription(`**<@${member.id}> a quitté le serveur discord...**`)
-        .addField(
-          "**Date de départ:**",
-          `${dateFormat.getFullDate(Date.now())}`
-        )
+        .addField("**Date de départ**", `${dateFormat.getFullDate(Date.now())}`)
         .setFooter(`Member ID: ${member.id}`)
         .setTimestamp()
         .setColor("RED");
