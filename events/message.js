@@ -1,4 +1,3 @@
-const { owners } = require("../config");
 const timeFormat = require("../functions/dateFormat");
 const serverQueryFactory = require("../factories/serverQueryFactory");
 
@@ -37,7 +36,7 @@ module.exports = async (client, message) => {
   if (!cmd) cmd = client.commands.get(client.aliases.get(command));
   if (!cmd) return;
 
-  if (cmd.requirements.ownerOnly && !owners.includes(message.author.id)) {
+  if (cmd.requirements.ownerOnly && message.author.id !== process.env.OWNER) {
     if (message.deletable) message.delete();
     return message
       .reply("seul un propriétaire du bot peut utiliser cette commande!")

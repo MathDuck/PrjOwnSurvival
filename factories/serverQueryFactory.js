@@ -15,6 +15,12 @@ module.exports = {
     );
   },
 
+  updateLogChannelQuery: function (client) {
+    return client.db.prepare(
+      "UPDATE servers SET log_channel_id = ? WHERE guild_id = ? LIMIT 1"
+    );
+  },
+
   increaseCommandLaunchedQuery: function (client) {
     return client.db.prepare(
       "UPDATE servers SET commands_launched = commands_launched + 1 WHERE guild_id = ? LIMIT 1"
