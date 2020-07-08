@@ -5,7 +5,8 @@ const dateFormat = require("../functions/dateFormat");
 module.exports = async (client, message) => {
   if (message.partial) return;
   if (message.author.bot) return;
-  if (!message) return;
+  if (!message || message.content === "") return;
+  if (message.content.startsWith("!")) return;
 
   const checkServerData = await serverQueryFactory
     .checkDataQuery(client)

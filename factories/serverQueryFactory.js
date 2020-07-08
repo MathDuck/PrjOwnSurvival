@@ -27,6 +27,18 @@ module.exports = {
     );
   },
 
+  checkRoleSystemQuery: function (client) {
+    return client.db.prepare(
+      "SELECT * FROM roles_system WHERE message_id = ? AND guild_id = ? LIMIT 1"
+    );
+  },
+
+  buildRoleSystemQuery: function (client) {
+    return client.db.prepare(
+      "INSERT INTO roles_system (guild_id, message_id, role_id) VALUES (?, ?, ?)"
+    );
+  },
+
   increaseCommandLaunchedQuery: function (client) {
     return client.db.prepare(
       "UPDATE servers SET commands_launched = commands_launched + 1 WHERE guild_id = ? LIMIT 1"

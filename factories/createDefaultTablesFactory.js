@@ -6,6 +6,12 @@ module.exports = {
       )
       .run();
 
+    client.db
+      .prepare(
+        `CREATE TABLE IF NOT EXISTS roles_system (guild_id TEXT DEFAULT NULL, message_id TEXT DEFAULT NULL, role_id TEXT DEFAULT NULL)`
+      )
+      .run();
+
     console.log(`Tables créées (si non existantes)...`);
   },
 };
