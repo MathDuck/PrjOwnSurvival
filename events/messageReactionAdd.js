@@ -1,4 +1,5 @@
 const serverQueryFactory = require("../factories/serverQueryFactory");
+const { relativeTimeRounding } = require("moment");
 
 module.exports = async (client, reaction, user) => {
   if (user.bot) return;
@@ -13,6 +14,8 @@ module.exports = async (client, reaction, user) => {
   let roleSystemData = await serverQueryFactory
     .checkRoleSystemQuery(client)
     .get(reaction.message.id, reaction.message.guild.id);
+
+  if (!roleSystemData) return;
 
   if (roleSystemData.message_id === reaction.message.id) {
     if (reaction.emoji.name === "✅") {

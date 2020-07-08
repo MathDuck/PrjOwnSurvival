@@ -14,6 +14,8 @@ module.exports = async (client, reaction, user) => {
     .checkRoleSystemQuery(client)
     .get(reaction.message.id, reaction.message.guild.id);
 
+  if (!roleSystemData) return;
+
   if (roleSystemData.message_id === reaction.message.id) {
     if (reaction.emoji.name === "✅") {
       let role = reaction.message.guild.roles.cache.find(
