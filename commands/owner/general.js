@@ -31,7 +31,7 @@ module.exports.run = async (client, message, args) => {
       );
   } else {
     message
-      .reply(`le channel log est désactivé.`)
+      .reply(`le channel général est désactivé.`)
       .then((m) => m.delete({ timeout: 5000 }));
   }
 

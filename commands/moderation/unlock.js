@@ -5,8 +5,8 @@ module.exports.run = async (client, message, args) => {
   const locked = await message.channel.overwritePermissions([
     {
       id: message.channel.guild.id,
-      allow: ["SEND_MESSAGES"]
-    }
+      allow: ["SEND_MESSAGES"],
+    },
   ]);
 
   const embed = new MessageEmbed().setDescription(
@@ -20,20 +20,18 @@ module.exports.run = async (client, message, args) => {
 
 module.exports.help = {
   name: "unlock",
-  aliases: [],
-  description:
-    "Ouvre rapidement un salon avec la permission SEND_MESSAGE pour tout le monde.",
-  usage: "",
-  category: "Modération"
+  description: "Ouvre rapidement un salon pour tout le monde.",
+  usage: "<>",
+  category: "Modération",
 };
 
 module.exports.requirements = {
   userPerms: ["MANAGE_MESSAGES"],
   clientPerms: ["MANAGE_MESSAGES"],
-  ownerOnly: false
+  ownerOnly: false,
 };
 
 module.exports.limits = {
   rateLimit: 1,
-  cooldown: 10 * 1000
+  cooldown: 10 * 1000,
 };

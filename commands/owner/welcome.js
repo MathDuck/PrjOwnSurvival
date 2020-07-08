@@ -3,6 +3,7 @@ Canvas.registerFont("./Ubuntu-Bold.ttf", { family: "Ubuntu" });
 const Discord = require("discord.js");
 
 module.exports.run = async (client, message, args) => {
+  if (message.deletable) message.delete();
   // Set a new canvas to the dimensions of 700x250 pixels
   const canvas = Canvas.createCanvas(700, 250);
   // ctx (context) will be used to modify a lot of the canvas
@@ -76,9 +77,8 @@ const applyText = (canvas, text) => {
 };
 
 module.exports.help = {
-  name: "test",
-  aliases: [],
-  description: "test",
+  name: "welcome",
+  description: "Envoie une image de bienvenue.",
   usage: "<>",
   category: "Gestion",
 };

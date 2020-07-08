@@ -19,7 +19,7 @@ module.exports.run = async (client, message, args) => {
     .addField("Rôles", message.guild.roles.cache.size, true)
     .addField("Salons", message.guild.channels.cache.size, true)
     .addField("Emojis", message.guild.emojis.cache.size, true)
-    .addField("Commandes lancées", serverData.commandsLaunched, true)
+    .addField("Commandes lancées", serverData.commands_launched, true)
     .setColor("RANDOM")
     .setThumbnail(message.guild.iconURL());
 
@@ -31,16 +31,16 @@ module.exports.help = {
   aliases: ["info"],
   description: "Renvoie les infos du serveur.",
   usage: "<>",
-  category: "Utilisateur"
+  category: "Utilisateur",
 };
 
 module.exports.requirements = {
   userPerms: [],
   clientPerms: [],
-  ownerOnly: false
+  ownerOnly: false,
 };
 
 module.exports.limits = {
   rateLimit: 5,
-  cooldown: 30 * 1000
+  cooldown: 30 * 1000,
 };
