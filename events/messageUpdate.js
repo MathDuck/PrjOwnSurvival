@@ -16,7 +16,7 @@ module.exports = async (client, oldMessage, newMessage) => {
     const embed = new MessageEmbed()
       .setAuthor(newMessage.author.tag, newMessage.author.avatarURL())
       .setDescription(
-        `:keyboard: **Le [message](${newMessage}) envoyé par <@${newMessage.author.id}> a été modifié dans le channel <#${newMessage.channel.id}>**.`
+        `:keyboard: **Le [message](https://discordapp.com/channels/${newMessage.guild.id}/${newMessage.channel.id}/${newMessage.id}) envoyé par <@${newMessage.author.id}> a été modifié dans le channel <#${newMessage.channel.id}>.**`
       )
       .addField("**Ancien Message**", `${oldMessage}`)
       .addField("**Nouveau Message**", `${newMessage}`)

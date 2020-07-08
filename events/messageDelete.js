@@ -21,7 +21,7 @@ module.exports = async (client, message) => {
       const embed = new MessageEmbed()
         .setAuthor(message.author.tag, message.author.avatarURL())
         .setDescription(
-          `**Le message envoyé par <@${message.author.id}> a été supprimé dans le channel <#${message.channel.id}>**\n${message.content}`
+          `**Le message envoyé par <@${message.author.id}> a été supprimé dans le channel <#${message.channel.id}>.**\n${message.content}`
         )
         .addField(
           "**Date du message**",
