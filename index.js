@@ -10,7 +10,7 @@ const client = new Client({
   disableEveryone: true,
   partials: ["MESSAGE", "CHANNEL", "REACTION"],
   presence: {
-    activity: { name: "botActivityStatus", type: "WATCHING" },
+    activity: { name: "les logs", type: "WATCHING" },
     status: "online",
   },
 });
