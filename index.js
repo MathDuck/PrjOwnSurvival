@@ -1,7 +1,7 @@
 const { Client, Collection } = require("discord.js");
 require("dotenv").config();
 const commandhandler = require("./handlers/commandHandler");
-const eventhandler = require("./handlers/EventHandler");
+const eventhandler = require("./handlers/eventHandler");
 const SQLite = require("better-sqlite3");
 const db = new SQLite("./data/db.sqlite", { verbose: console.log });
 const createDefaultTables = require("./factories/createDefaultTablesFactory");
