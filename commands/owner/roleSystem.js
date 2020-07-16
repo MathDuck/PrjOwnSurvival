@@ -5,26 +5,38 @@ module.exports.run = async (client, message, args) => {
 
   if (!args[0])
     return message
-      .reply(`Merci de ne pas oublier de spécifier le rôle.`)
+      .reply(`Merci de ne pas oublier de spécifier l'id du rôle.`)
       .then((m) => m.delete({ timeout: 5000 }));
 
-  let role = message.guild.roles.cache.find(
-    (r) => r.name.toLowerCase() === args[0].toLowerCase()
-  );
+  const roleId = args[0];
 
-  if (!role)
-    return message
-      .reply(`Le rôle ${args[0]} n'existe pas. Merci de vérifier.`)
-      .then((m) => m.delete({ timeout: 5000 }));
+  if (roleId !== "0") {
+    if (isNaN(roleId)) {
+      return message
+        .reply(`l'ID du rôle spécifié n'est pas valide.`)
+        .then((m) => m.delete({ timeout: 5000 }));
+    }
 
-  await message.channel
-    .send(`**Pour obtenir le rôle "${role.name}", clique sur ✅ !**`)
-    .then((m) => {
-      m.react("✅");
-      serverQueryFactory
-        .buildRoleSystemQuery(client)
-        .run(message.guild.id, m.id, role.id);
-    });
+    message.guild.roles
+      .fetch(roleId)
+      .then((role) => {
+        message.channel
+          .send(`**Pour obtenir le rôle "${role.name}", clique sur ✅ !**`)
+          .then((m) => {
+            m.react("✅");
+            serverQueryFactory
+              .buildRoleSystemQuery(client)
+              .run(message.guild.id, m.id, role.id);
+          });
+      })
+      .catch((error) => {
+        return message
+          .reply(
+            `Le rôle ${args[0]} n'existe pas. Merci de vérifier. (Erreur: ${error})`
+          )
+          .then((m) => m.delete({ timeout: 5000 }));
+      });
+  }
 };
 
 module.exports.help = {

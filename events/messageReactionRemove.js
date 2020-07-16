@@ -1,4 +1,5 @@
 const serverQueryFactory = require("../factories/serverQueryFactory");
+const { MessageEmbed } = require("discord.js");
 
 module.exports = async (client, reaction, user) => {
   if (user.bot) return;
@@ -25,7 +26,30 @@ module.exports = async (client, reaction, user) => {
       if (role) {
         const member = reaction.message.guild.members.resolve(user.id);
         if (!member) return;
+
         member.roles.remove(role);
+
+        const checkServerData = await serverQueryFactory
+          .checkDataQuery(client)
+          .get(reaction.message.guild.id);
+
+        const logChannelId = checkServerData.log_channel_id;
+        if (logChannelId === "0") return;
+
+        await client.channels
+          .fetch(logChannelId)
+          .then((channel) => {
+            const embed = new MessageEmbed()
+              .setAuthor(member.user.tag, member.user.avatarURL())
+              .setDescription(`**${member}** a retiré son rôle ${role}.`)
+              .setTimestamp()
+              .setColor("RED");
+
+            return channel.send(embed);
+          })
+          .catch((error) => {
+            console.log(`Erreur: ${error}`);
+          });
       } else {
         reaction.message.channel
           .reply(
