@@ -12,6 +12,8 @@ module.exports = async (client, oldMessage, newMessage) => {
   const logChannelId = checkServerData.log_channel_id;
   if (logChannelId === "0") return;
 
+  if (oldMessage.length <= 0) oldMessage = "Unknown";
+
   client.channels.fetch(logChannelId).then((channel) => {
     const embed = new MessageEmbed()
       .setAuthor(newMessage.author.tag, newMessage.author.avatarURL())

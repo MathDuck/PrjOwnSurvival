@@ -7,7 +7,7 @@ const db = new SQLite("./data/db.sqlite", { verbose: console.log });
 const createDefaultTables = require("./factories/createDefaultTablesFactory");
 
 const client = new Client({
-  disableEveryone: true,
+  disableMentions: "everyone",
   partials: ["MESSAGE", "CHANNEL", "REACTION"],
   presence: {
     activity: { name: "les logs", type: "WATCHING" },
